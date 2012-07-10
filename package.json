@@ -1,0 +1,17 @@
+{
+  "author": "skoni",
+  "name": "servethis",
+  "description": "serve files from the local filesystem over http for testing",
+  "version": "0.0.1",
+  "homepage": "https://github.com/skoni/servethis",
+  "repository": {
+    "url": "git://github.com/skoni/servethis.git"
+  },
+  "main": "./index.js",
+  "bin": {
+    "servethis": "./bin/servethis"
+  },
+  "engines": {
+    "node": "0.8.x"
+  }
+}

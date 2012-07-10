@@ -1,0 +1,49 @@
+#!/usr/bin/env node
+
+var fs = require('fs'),
+    createServer = require('../index.js');
+
+function exitUsage(code) {
+  console.log("usage: serverthis [-p PORT] [DIRECTORY]");
+  process.exit(code);
+}
+
+function parseArgs(args) {
+  var p = 8080;
+  var d = process.cwd();
+
+  for (var i = 2; i < args.length; ++i) {
+    switch (args[i]) {
+    case '--help':
+    case '-h':
+      exitUsage(0);
+      break;
+
+    case '-p':
+      if (args.length > i + 1) {
+        p = parseInt(args[++i], 10);
+      }
+      else {
+        exitUsage(1);
+      }
+      break;
+
+    default:
+      d = args[i];
+      break;
+    }
+  }
+
+  if (!fs.existsSync(d)) {
+    console.log('cannot find directory: ' + d);
+    exitUsage(1);
+  }
+
+  return {
+    port: p,
+    dir: d
+  };
+}
+
+var args = parseArgs(process.argv),
+    server = createServer({port: args.port, dir: args.dir});
