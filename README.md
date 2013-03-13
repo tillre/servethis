@@ -11,6 +11,3 @@ MIT License
 
 ## Install with npm
     npm install -g servethis
-
-## Run tests
-    npm test
